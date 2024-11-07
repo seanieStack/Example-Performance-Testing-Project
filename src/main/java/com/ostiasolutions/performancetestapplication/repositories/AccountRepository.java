@@ -9,8 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Optional<Account> findDistinctByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndAccountNumber(String firstName, String lastName, long accountNumber);
-
     Optional<Account> findDistinctByAccountNumber(long accountNumber);
 
     void deleteByAccountNumber(long AccountNumber);
