@@ -14,4 +14,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Optional<Account> findDistinctByAccountNumber(long accountNumber);
 
     void deleteByAccountNumber(long AccountNumber);
+
+    boolean existsByAccountNumber(long accountNumber);
 }

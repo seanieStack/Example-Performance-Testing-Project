@@ -3,7 +3,6 @@ package com.ostiasolutions.performancetestapplication.controllers;
 import com.ostiasolutions.performancetestapplication.entities.Account;
 import com.ostiasolutions.performancetestapplication.services.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;

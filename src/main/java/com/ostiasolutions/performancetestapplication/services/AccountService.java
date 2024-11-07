@@ -24,10 +24,8 @@ public class AccountService {
     }
 
     public Account createAccount(Account account) {
-        Optional<Account> existingAccount = accountRepository.findDistinctByAccountNumber(account.getAccountNumber());
-
-        if (existingAccount.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Account already exists with this name and account number.");
+        if (!accountRepository.existsByAccountNumber(account.getAccountNumber())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
         }
 
         return accountRepository.save(account);
@@ -35,22 +33,19 @@ public class AccountService {
 
     @Transactional
     public void deleteAccount(long accountNumber) {
-        Optional<Account> optionalAccount = accountRepository.findDistinctByAccountNumber(accountNumber);
-        if (optionalAccount.isEmpty()) {
+        if (!accountRepository.existsByAccountNumber(accountNumber)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
         }
 
         accountRepository.deleteByAccountNumber(accountNumber);
     }
 
+    @Transactional
     public Account updateAccount(Account account) {
-        Optional<Account> existingAccount = accountRepository.findDistinctByAccountNumber(account.getAccountNumber());
+        Account existingAccount = accountRepository.findDistinctByAccountNumber(account.getAccountNumber())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found"));
 
-        if (existingAccount.isPresent()) {
-            account.setId(existingAccount.get().getId());
-            return accountRepository.save(account);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
-        }
+        account.setId(existingAccount.getId());
+        return accountRepository.save(account);
     }
 }
