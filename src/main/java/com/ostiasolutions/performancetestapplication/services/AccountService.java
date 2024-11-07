@@ -22,7 +22,7 @@ public class AccountService {
     }
 
     public Account createAccount(Account account) {
-        if (!accountRepository.existsByAccountNumber(account.getAccountNumber())) {
+        if (accountRepository.existsByAccountNumber(account.getAccountNumber())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
         }
 
