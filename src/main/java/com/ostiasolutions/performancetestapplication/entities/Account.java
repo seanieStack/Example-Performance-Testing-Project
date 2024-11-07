@@ -1,4 +1,4 @@
-package ie.seaniestack.performancetestapplication.entities;
+package com.ostiasolutions.performancetestapplication.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 1000000000L, message = "Account number must be at least 10 digits.")
+    @Min(value = 1L, message = "Account number must be at least 10 digits.")
     private long accountNumber;
 
     @NotBlank(message = "First name is required.")
@@ -53,7 +53,7 @@ public class Account {
     private String country;
 
     @NotNull(message = "Phone number is required.")
-    @Pattern(regexp = "^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$", message = "Invalid phone number.")
+    @Pattern(regexp = "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s./0-9]*$", message = "Invalid phone number.")
     private String phoneNumber;
 
     @NotBlank(message = "Occupation is required.")

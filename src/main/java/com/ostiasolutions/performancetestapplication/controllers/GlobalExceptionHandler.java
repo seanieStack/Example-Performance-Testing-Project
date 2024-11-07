@@ -1,4 +1,4 @@
-package ie.seaniestack.performancetestapplication.controllers;
+package com.ostiasolutions.performancetestapplication.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
