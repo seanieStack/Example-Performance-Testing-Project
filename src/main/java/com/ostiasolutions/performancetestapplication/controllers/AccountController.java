@@ -15,7 +15,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping(value = "/{accountNumber}"/*, produces = "application/json"*/)
+    @GetMapping(value = "/{accountNumber}", produces = "application/json")
     public Account getAccount(@PathVariable long accountNumber) {
         return accountService.getAccount(accountNumber);
     }
